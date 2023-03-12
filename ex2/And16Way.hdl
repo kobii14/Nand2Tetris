@@ -1,0 +1,31 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/HalfAdder.hdl
+
+/**
+ * Computes according to f of Alu
+ */
+
+CHIP And16Way {
+    IN in[16];    // 1-bit inputs
+    OUT out;
+
+    PARTS:
+    And(a=in[0],b=in[1],out=a0);
+    And(a=in[2],b=a0,out=a1);
+    And(a=in[3],b=a1,out=a2);
+    And(a=in[4],b=a2,out=a3);
+    And(a=in[5],b=a3,out=a4);
+    And(a=in[6],b=a4,out=a5);
+    And(a=in[7],b=a5,out=a6);
+    And(a=in[8],b=a6,out=a7);
+    And(a=in[9],b=a7,out=a8);
+    And(a=in[10],b=a8,out=a9);
+    And(a=in[11],b=a9,out=a10);
+    And(a=in[12],b=a10,out=a11);
+    And(a=in[13],b=a11,out=a12);
+    And(a=in[14],b=a12,out=a13);
+    And(a=in[15],b=a13,out=out);
+
+}

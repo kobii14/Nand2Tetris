@@ -1,0 +1,161 @@
+// This file is part of nand2tetris, as taught in The Hebrew University, and
+// was written by Aviv Yaish. It is an extension to the specifications given
+// [here](https://www.nand2tetris.org) (Shimon Schocken and Noam Nisan, 2017),
+// as allowed by the Creative Common Attribution-NonCommercial-ShareAlike 3.0
+// Unported [License](https://creativecommons.org/licenses/by-nc-sa/3.0/).
+
+/**
+ * A library of commonly used mathematical functions.
+ * Note: Jack compilers implement multiplication and division using OS method calls.
+ */
+class Math {
+        static Array arr;
+
+        /** Initializes the library. */
+        function void init() {
+            let arr=Array.new(15);
+            let arr[0]=1;
+            let arr[1]=2;
+            let arr[2]=4;
+            let arr[3]=8;
+            let arr[4]=16;
+            let arr[5]=32;
+            let arr[6]=64;
+            let arr[7]=128;
+            let arr[8]=256;
+            let arr[9]=512;
+            let arr[10]=1024;
+            let arr[11]=2048;
+            let arr[12]=4096;
+            let arr[13]=8192;
+            let arr[14]=16384;
+            let arr[15]=16384+16384;
+            return;
+        }
+
+        /** Returns the absolute value of x. */
+        function int abs(int x) {
+        if ((x>0)|(x=0)){return x;}
+        else{return -x;}
+        }
+
+        /** 
+         * Returns the product of x and y. 
+         * When a Jack compiler detects the multiplication operator '*' in the 
+         * program's code, it handles it by invoking this method. In other words,
+         * the Jack expressions x*y and multiply(x,y) return the same value.
+         */
+        function int multiply(int x, int y) {
+            // Pseudocode:
+            // 1. let sum = 0
+            // 2. let shiftedx = x
+            // 3. for i = 0 ... n-1 do
+            // 4.   if ((i-th bit of y) == 1)
+            // 5.      let sum = sum + shiftedx
+            // 6.   let shiftedx = 2*shiftedx
+            // 7. return sum
+
+
+            var int sum, shiftedx,i,flag_minus,abs_x,abs_y;
+            if (((x<0) &(y>0)) |((x>0) &(y<0))){
+            let flag_minus=1;
+            }
+            let i=0;
+            let sum=0;
+            let abs_x=Math.abs(x);
+            let abs_y=Math.abs(y);
+            let shiftedx=abs_x;
+            while(i<16){
+                if ((arr[i]&abs_y)=arr[i]){
+                let sum=sum+shiftedx;
+                }
+                let shiftedx=^shiftedx;
+                let i=i+1;
+
+            }
+            if (flag_minus=1){return -sum;}
+            else{return sum;}
+        }
+
+        /** 
+         * Returns the integer part of x/y.
+         * When a Jack compiler detects the multiplication operator '/' in the 
+         * program's code, it handles it by invoking this method. In other words,
+         * the Jack expressions x/y and divide(x,y) return the same value.
+         */
+        function int divide(int x, int y) {
+            // This should be implemented without using multiplication.
+            // Hint: updating the value of 2*q*y in the "if" statement requires
+            // at most a single addition operator at every recursion step.
+            // Pseudocode:
+            // 1. if (y > x) return 0
+            // 2. let q = divide(x, 2*y)
+            // 3. if ((x - 2*q*y) < y)
+            // 4.   return 2*q
+            // 5. else
+            // 6.   return 2*q + 1
+            var int q,abs_x,abs_y,flag_minus,result;
+
+            if (((x<0) &(y>0)) |((x>0) &(y<0))){
+            let flag_minus=1;
+            }
+
+            let abs_x=Math.abs(x);
+            let abs_y=Math.abs(y);
+
+            if ((abs_y > abs_x)){
+            return 0;
+            }
+            let q=Math.divide(abs_x,^abs_y);
+            if ((abs_x-(2*q*abs_y))<abs_y){
+            let result= ^q;
+            }
+            else{
+            let result= (^q)+1;
+            }
+
+            if (flag_minus=1){
+            return -result;
+            }
+            else{
+            return result;
+            }
+
+        }
+
+
+        /** Returns the integer part of the square root of x. */
+        function int sqrt(int x) {
+            // This should be implemented without using multiplication or division.
+            // Pseudocode (where '**' is the mathematical power function):
+            // 1. let y = 0
+            // 2. for j = (n/2 - 1) ... 0 do
+            // 3.   if ((y + 2**j)**2 <= x) then let y = y + 2**j
+            // 4. return y
+            var int y,j,num,z;
+            let y=0;
+            let j=7;
+            while (~(j<0)){
+                let num=y+arr[j];
+                let num=num*num;
+                if (~(num>x) & (num>0)){
+                    let y=y+arr[j];
+                }
+                let j=j-1;
+            }
+            return y;
+
+        }
+
+        /** Returns the greater number. */
+        function int max(int a, int b) {
+        if (a>b){return a;}
+        else{return b;}
+        }
+
+        /** Returns the smaller number. */
+        function int min(int a, int b) {
+        if (a<b){return a;}
+        else{return b;}
+        }
+}

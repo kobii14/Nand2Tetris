@@ -1,0 +1,35 @@
+// This file is part of nand2tetris, as taught in The Hebrew University, and
+// was written by Aviv Yaish. It is an extension to the specifications given
+// [here](https://www.nand2tetris.org) (Shimon Schocken and Noam Nisan, 2017),
+// as allowed by the Creative Common Attribution-NonCommercial-ShareAlike 3.0
+// Unported [License](https://creativecommons.org/licenses/by-nc-sa/3.0/).
+
+/**
+ * bitwise not 16-bit
+ *
+ */
+
+CHIP Negate{
+    IN in[16],nx;
+    OUT out[16];
+     
+    PARTS:
+    Xor(a=in[0],b=nx,out=out[0]);
+    Xor(a=in[1],b=nx,out=out[1]);
+    Xor(a=in[2],b=nx,out=out[2]);
+    Xor(a=in[3],b=nx,out=out[3]);
+    Xor(a=in[4],b=nx,out=out[4]);
+    Xor(a=in[5],b=nx,out=out[5]);
+    Xor(a=in[6],b=nx,out=out[6]);
+    Xor(a=in[7],b=nx,out=out[7]);
+    Xor(a=in[8],b=nx,out=out[8]);
+    Xor(a=in[9],b=nx,out=out[9]);
+    Xor(a=in[10],b=nx,out=out[10]);
+    Xor(a=in[11],b=nx,out=out[11]);
+    Xor(a=in[12],b=nx,out=out[12]);
+    Xor(a=in[13],b=nx,out=out[13]);
+    Xor(a=in[14],b=nx,out=out[14]);
+    Xor(a=in[15],b=nx,out=out[15]);
+
+
+}

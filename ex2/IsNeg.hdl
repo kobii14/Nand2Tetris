@@ -1,0 +1,17 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/HalfAdder.hdl
+
+/**
+ * return 1 iff left most bit is 1.
+ */
+
+CHIP IsNeg {
+    IN in[16];    // 
+    OUT out;
+
+    PARTS:
+    And(a=true,b=in[15],out=out);
+
+}

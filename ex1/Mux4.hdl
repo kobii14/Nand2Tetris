@@ -1,0 +1,28 @@
+
+/**
+ * 16-bit bitwise And:
+ * for i = 0..15: out[i] = (a[i] and b[i])
+ */
+
+CHIP Mux4 {
+    IN a, b, c, d, sel0,sel1;
+    OUT out;
+
+    PARTS:
+    Not(in=sel0,out=s1n);
+    Not(in=sel1,out=s2n);
+
+    And(a=s1n,b=s2n,out=s1);
+    And(a=sel0,b=s2n,out=s2);
+    And(a=s1n,b=sel1,out=s3);
+    And(a=sel0,b=sel1,out=s4);
+
+    And(a=a,b=s1,out=a0);
+    And(a=b,b=s2,out=b0);
+    And(a=c,b=s3,out=c0);
+    And(a=d,b=s4,out=d0);
+
+    Or(a=a0,b=b0,out=out1);
+    Or(a=c0,b=d0,out=out2);
+    Or(a=out1,b=out2,out=out);
+}

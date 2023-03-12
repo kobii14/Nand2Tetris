@@ -1,0 +1,33 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/FullAdder.hdl
+
+/**
+ * Computes negative number.
+ */
+
+CHIP Zero{
+    IN x[16],zx; 
+    OUT out[16]; 
+
+
+    PARTS:
+    Not(in=zx,out=nzx);
+    And(a=x[0],b=nzx,out=out[0]);
+    And(a=x[1],b=nzx,out=out[1]);
+    And(a=x[2],b=nzx,out=out[2]);
+    And(a=x[3],b=nzx,out=out[3]);
+    And(a=x[4],b=nzx,out=out[4]);
+    And(a=x[5],b=nzx,out=out[5]);
+    And(a=x[6],b=nzx,out=out[6]);
+    And(a=x[7],b=nzx,out=out[7]);
+    And(a=x[8],b=nzx,out=out[8]);
+    And(a=x[9],b=nzx,out=out[9]);
+    And(a=x[10],b=nzx,out=out[10]);
+    And(a=x[11],b=nzx,out=out[11]);
+    And(a=x[12],b=nzx,out=out[12]);
+    And(a=x[13],b=nzx,out=out[13]);
+    And(a=x[14],b=nzx,out=out[14]);
+    And(a=x[15],b=nzx,out=out[15]);
+}
